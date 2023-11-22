@@ -9,5 +9,10 @@ public  abstract class Encriptador {
     
     public abstract  String decodificador();
     public abstract  String codificador();
-    protected abstract void validarEntrada(String pEntrada);
+    protected  void validarEntrada(String pEntrada)
+    {
+        if (pEntrada.length() == 0 ) {
+            throw new IllegalArgumentException("El elemento ingresado se encuentra vacio");
+        }
+    }
 }

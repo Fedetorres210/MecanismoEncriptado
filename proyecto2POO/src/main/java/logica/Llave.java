@@ -18,23 +18,68 @@ public  class Llave extends Sustitucion {
         
     }
     
-    public String decodificador()
+    public  String decodificador()
     {
-       StringBuilder mensajeCifrado = new StringBuilder();
-
-        for (char caracter : entrada.toCharArray()) {
-            if (Character.isLetter(caracter)) {
-                char base = (Character.isUpperCase(caracter)) ? 'A' : 'a';
-                mensajeCifrado.append((char) ((caracter - base + 23) % 26 + base));
-            } else {
-                mensajeCifrado.append(caracter);
+        StringBuilder palabraCifrada = new StringBuilder();
+        int longitudPalabra = entrada.length();
+        int longitudPalabraClave = palabraClave.length();
+        int j =0;
+        for (int i = 0; i < longitudPalabra; i++) {
+            
+            char letraPalabra = entrada.charAt(i);
+            if (letraPalabra == ' ')
+            {
+                
+                palabraCifrada.append(' ');
+                j=0;
+                i= i+1;
+                letraPalabra = entrada.charAt(i);
+                
             }
+            
+            if (j>= longitudPalabraClave)
+            {
+               j =  0;
+               
+            }
+            
+            
+            
+            char letraPalabraClave = palabraClave.charAt(j);
+            System.out.println(letraPalabraClave);
+            System.out.println(letraPalabra);
+            System.out.println((int)letraPalabraClave);
+            System.out.println((int)letraPalabra);
+            
+
+            // Suma los valores de las letras y ajusta según el alfabeto
+            char letraCifrada = (char) ((letraPalabra  - 1 - letraPalabraClave ) % 26 );
+            
+            
+
+            palabraCifrada.append(letraCifrada);
+            j++;
         }
-        
-        return mensajeCifrado.toString();
-       
+        return palabraCifrada.toString();
         
     }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     public  String codificador()
     {
         StringBuilder palabraCifrada = new StringBuilder();
@@ -76,7 +121,6 @@ public  class Llave extends Sustitucion {
         return palabraCifrada.toString();
         
     }
-    
     
     
     

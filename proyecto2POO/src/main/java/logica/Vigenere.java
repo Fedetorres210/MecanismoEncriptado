@@ -81,7 +81,15 @@ public class Vigenere extends Sustitucion {
     
     private void validarCifra()
     {
-        int miCifra =  Integer.valueOf(cifra);
+        try
+        {
+            int miCifra =  Integer.valueOf(cifra);
+        }
+        catch(Exception e)
+        {
+            throw new IllegalArgumentException("No se ingreso un digito numerico");
+        }
+        
         if (cifra.length() == 0 ) {
             throw new IllegalArgumentException("No se ingreso una cifra");
         }
