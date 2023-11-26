@@ -3,11 +3,23 @@ package logica;
 import javax.swing.JOptionPane;
 
 /**
- *
- * @author Dell
+ * Clase que implementa el cifrado y descifrado utilizando una palabra clave.
+ * 
+ * Hereda de la clase 'Sustitucion' y sobrescribe los métodos de codificación y decodificación.
+ * 
+ * @author Jefferson Sanabria Brenes y Federico Torres Lobo
  */
 public  class Llave extends Sustitucion {
     String palabraClave;
+    
+    
+    
+    /**
+     * Constructor de la clase llave.
+     * @param pEntrada Texto de entrada 
+     * @param clave  Texto que sirve de clave
+     * @
+     */
     public Llave(String pEntrada,String clave)
     {
         
@@ -18,8 +30,14 @@ public  class Llave extends Sustitucion {
         
     }
     
+    /**
+     * Método que decodifica el mensaje utilizando la palabra clave.
+     * 
+     * @return Mensaje descifrado.
+     */
     public  String decodificador()
     {
+        
         StringBuilder palabraCifrada = new StringBuilder();
         int longitudPalabra = entrada.length();
         int longitudPalabraClave = palabraClave.length();
@@ -46,21 +64,26 @@ public  class Llave extends Sustitucion {
             
             
             char letraPalabraClave = palabraClave.charAt(j);
-            System.out.println(letraPalabraClave);
-            System.out.println(letraPalabra);
-            System.out.println((int)letraPalabraClave);
-            System.out.println((int)letraPalabra);
+            int totalLetra = (letraPalabra - letraPalabraClave) % 26;
+            if (totalLetra <= 0) 
+            {
+              totalLetra += 26;
+            }
+            
+            
             
 
             // Suma los valores de las letras y ajusta según el alfabeto
-            char letraCifrada = (char) ((letraPalabra  - 1 - letraPalabraClave ) % 26 );
+            char letraCifrada =  (char) (totalLetra + 'a' - 1);
             
             
 
             palabraCifrada.append(letraCifrada);
             j++;
         }
-        return palabraCifrada.toString();
+        return palabraCifrada.toString().trim();
+        
+        
         
     }
     
@@ -70,16 +93,11 @@ public  class Llave extends Sustitucion {
     
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    /**
+     * Método que codifica el mensaje utilizando la palabra clave.
+     * 
+     * @return Mensaje cifrado.
+     */
     public  String codificador()
     {
         StringBuilder palabraCifrada = new StringBuilder();

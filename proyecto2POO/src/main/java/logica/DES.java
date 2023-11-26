@@ -10,7 +10,13 @@ import java.util.Base64;
 
 
 
-
+/**
+ * Clase que proporciona métodos para encriptar y desencriptar texto utilizando el algoritmo DESede (Triple DES).
+ * 
+ * Requiere una clave de encriptación para inicializar la encriptación y desencriptación.
+ * 
+ * @author Jefferson Sanabria Brenes y Federico Torres Lobo
+ */
 public class DES   
 {
     private static final String UNICODE_FORMAT = "UTF8";
@@ -24,6 +30,13 @@ public class DES
     private SecretKey key;
     private String entrada;
 
+    
+    /**
+     * Constructor de la clase DES.
+     * 
+     * @param entrada Texto de entrada que se va a encriptar/desencriptar.
+     * @throws Exception Si ocurre un error durante la inicialización del algoritmo o la clave.
+     */
     public DES(String entrada) throws Exception {
         this.entrada=entrada;
         myEncryptionKey = "ThisIsSpartaThisIsSparta";
@@ -36,6 +49,12 @@ public class DES
     }
 
     
+    
+    /**
+     * Método para encriptar el texto de entrada utilizando el algoritmo DESede.
+     * 
+     * @return Texto encriptado en formato Base64.
+     */
     public String codificador() {
         String entradaEncriptada = null;
         try {
@@ -50,6 +69,12 @@ public class DES
     }
 
     
+    
+    /**
+     * Método para desencriptar el texto encriptado utilizando el algoritmo DESede.
+     * 
+     * @return Texto desencriptado.
+     */  
     public String decodificador() {
     
     String entradaDesencriptada = null;

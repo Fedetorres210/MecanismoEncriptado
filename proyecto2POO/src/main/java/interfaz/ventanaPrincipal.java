@@ -31,10 +31,13 @@ import javax.swing.JFileChooser;
  */
 public class ventanaPrincipal extends javax.swing.JFrame {
 
-    /**
-     * Creates new form ventanaPrincipal
-     */
+    
     private int checkbox = 0;
+    /**
+    * Clase ventanaPrincipal que representa la interfaz gráfica principal.
+    * Permite realizar operaciones de encriptación y envío de correo electrónico.
+    * Autores: Jefferson Sanabria Brenes, Federico Torres Lobo
+    */
     public ventanaPrincipal() {
         initComponents();
         setLocationRelativeTo(null);
@@ -72,6 +75,7 @@ public class ventanaPrincipal extends javax.swing.JFrame {
         jCheckBox1 = new javax.swing.JCheckBox();
         inputEntrada3 = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
+        btnAbrirTXT1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -109,7 +113,7 @@ public class ventanaPrincipal extends javax.swing.JFrame {
                 btnAbrirTXTActionPerformed(evt);
             }
         });
-        getContentPane().add(btnAbrirTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 180, -1, -1));
+        getContentPane().add(btnAbrirTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 170, -1, -1));
 
         jLabel1.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         jLabel1.setText("Ingrese su correo:");
@@ -200,6 +204,15 @@ public class ventanaPrincipal extends javax.swing.JFrame {
         jLabel3.setText("Entrada:");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 180, -1, -1));
 
+        btnAbrirTXT1.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        btnAbrirTXT1.setText("Limpiar");
+        btnAbrirTXT1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAbrirTXT1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnAbrirTXT1, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 340, 100, -1));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -229,11 +242,22 @@ public class ventanaPrincipal extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btnAbrirTXTActionPerformed
 
+    /**
+     * Acción realizada al hacer clic en el botón "Salir".
+     * Cierra la ventana principal de la aplicación.
+     * @param evt Evento de acción que desencadena el cierre de la ventana.
+     */
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
         // TODO add your handling code here:
         this.dispose();
     }//GEN-LAST:event_btnSalirActionPerformed
 
+    /**
+    * Acción realizada al hacer clic en el botón "Aplicar algoritmo".
+    * Ejecuta el algoritmo seleccionado según las opciones elegidas en los JComboBox.
+    * Actualiza el campo de texto jTextField1 con el resultado del algoritmo aplicado.
+    * @param evt Evento de acción que desencadena la aplicación del algoritmo.
+    */
     private void btnAplicarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAplicarActionPerformed
 
         String resultado = "";
@@ -517,6 +541,11 @@ public class ventanaPrincipal extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btnAplicarActionPerformed
 
+    /**
+    * Acción realizada al seleccionar un elemento en el JComboBox jComboBox2.
+    * Muestra u oculta componentes según la opción seleccionada.
+    * @param evt Evento de acción que desencadena la selección en el JComboBox.
+    */
     private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
         inputEntrada.hide();
         inputEntrada2.hide(); 
@@ -557,6 +586,11 @@ public class ventanaPrincipal extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jComboBox2ActionPerformed
 
+    /**
+    * Acción realizada al seleccionar un elemento en el JComboBox jComboBox1.
+    * Configura la visibilidad de componentes según la opción seleccionada.
+    * @param evt Evento de acción que desencadena la selección en el JComboBox.
+    */
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         
         lblOperacion.setText("");
@@ -567,6 +601,7 @@ public class ventanaPrincipal extends javax.swing.JFrame {
         inputEntrada2.hide();
         if(jComboBox1.getSelectedItem().equals("Decifrado"))
         {
+           jComboBox2.setSelectedItem("Cifrado Cesar");
            if(jComboBox2.getSelectedItem().equals("RSA")) 
            {
                jCheckBox1.hide();
@@ -598,6 +633,11 @@ public class ventanaPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_inputEntrada2ActionPerformed
 
+    /**
+    * Acción realizada al interactuar con el JCheckBox jCheckBox1.
+    * Controla la visibilidad de componentes según el estado del checkbox.
+    * @param evt Evento de acción que desencadena la interacción con el JCheckBox.
+    */
     private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
         
         if (checkbox==0)
@@ -641,6 +681,11 @@ public class ventanaPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_inputEntrada3ActionPerformed
 
+    /**
+     * Método para enviar correo electrónico.
+     * Crea un objeto de la clase Correo y lo utiliza para enviar un correo.
+     * @param evt Evento de acción que desencadena el envío del correo.
+     */
     private void btnEnviarCorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnviarCorreoActionPerformed
        Correo nuevoCorreo =  new Correo();
        try
@@ -649,7 +694,7 @@ public class ventanaPrincipal extends javax.swing.JFrame {
            String tituloCorreo = jComboBox1.getSelectedItem().toString() + " " + jComboBox2.getSelectedItem().toString();
            String cuerpo = jTextField1.getText();
            nuevoCorreo.enviarCorreo(destinatario, tituloCorreo, cuerpo);
-           JOptionPane.showMessageDialog(null, "Correo Enviado Exitosamente", "Envio Exitoso", JOptionPane.PLAIN_MESSAGE);
+           JOptionPane.showMessageDialog(null, "Correo Enviado Exitosamente", "Envio Exitoso", JOptionPane.INFORMATION_MESSAGE);
        }
        catch(IllegalArgumentException e)
         {
@@ -658,8 +703,20 @@ public class ventanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEnviarCorreoActionPerformed
 
     /**
-     * 
-     * @param args the command line arguments
+     * Método para limpiar los datos.
+     * Limpia todos los elementos de texto ingresados
+     */
+    private void btnAbrirTXT1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAbrirTXT1ActionPerformed
+        inputEntrada3.setText(" ");
+        inputEntrada2.setText(" ");
+        inputEntrada1.setText(" ");
+        inputEntrada.setText(" ");
+        jTextField1.setText(" ");
+    }//GEN-LAST:event_btnAbrirTXT1ActionPerformed
+
+    /**
+     * Método principal para ejecutar la aplicación.
+     * @param args Argumentos de la línea de comandos.
      */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -695,6 +752,7 @@ public class ventanaPrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAbrirTXT;
+    private javax.swing.JButton btnAbrirTXT1;
     private javax.swing.JButton btnAplicar;
     private javax.swing.JButton btnEnviarCorreo;
     private javax.swing.JButton btnSalir;

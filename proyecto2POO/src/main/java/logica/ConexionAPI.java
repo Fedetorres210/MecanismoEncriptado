@@ -10,15 +10,34 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-
+/**
+ * Clase que realiza la validación de un correo electrónico utilizando la API de emailable.com.
+ * Permite verificar si una dirección de correo electrónico es válida o inválida.
+ * 
+ * Para usar esta clase, se necesita proporcionar un correo electrónico y se realizará la validación
+ * a través de la API de emailable.com.
+ * @author Jefferson Sanabria Brenes y Federico Torres Lobo
+ */
 public class ConexionAPI {
     private String correo;
     
+    
+    /**
+     * Constructor de la clase ConexionAPI.
+     * 
+     * @param correo La dirección de correo electrónico que se va a validar.
+     */
     public ConexionAPI(String correo)
     {
         this.correo=correo;
     }
 
+    
+    /**
+    * Método que utiliza la API de emailable.com para validar la dirección de correo electrónico.
+    * 
+    * @return true si el correo electrónico es válido, false si es inválido o se presenta algún error.
+    */
     public boolean validarCorreo()
     {
         StringBuilder respuesta = new StringBuilder();
@@ -45,7 +64,7 @@ public class ConexionAPI {
             
 
             while ((linea = reader.readLine()) != null) {
-                System.out.println(linea);
+                System.out.println("La linea es: " + linea);
                 if (linea.contains("\"state\":\"undeliverable\"") || linea.contains("\"reason\":\"rejected_email\"")) 
                 {
                     System.out.println(linea);

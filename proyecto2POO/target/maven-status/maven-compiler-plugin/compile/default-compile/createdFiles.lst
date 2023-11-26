@@ -20,6 +20,7 @@ interfaz\ventanaPrincipal$6.class
 logica\DES.class
 logica\FraseInversa.class
 logica\PalabraInversa.class
+interfaz\ventanaPrincipal$14.class
 logica\ConexionAPI.class
 interfaz\ventanaPrincipal$11.class
 logica\CodigoTelefonico.class

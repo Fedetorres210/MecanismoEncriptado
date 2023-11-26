@@ -5,7 +5,13 @@ import java.math.BigInteger;
 import org.apache.commons.lang3.StringUtils;
 
 
-
+/**
+ * Esta clase implementa el algoritmo RSA para cifrar y descifrar mensajes.
+ * 
+ * RSA es un algoritmo de criptografía asimétrica que utiliza claves pública y privada.
+ * 
+ * @author Jefferson Sanabria Brenes y Federico Torres Lobo
+ */
 public class RSA extends Encriptador{
     private int e;
     private int n;
@@ -45,7 +51,11 @@ public class RSA extends Encriptador{
     }
     
     
-    
+    /**
+    * Genera un número primo aleatorio en el rango de 1 a 100.
+    * 
+    * @return El número primo aleatorio generado.
+    */
     public  int generarPrimoAleatorio() {
         Random rand = new Random();
         int numeroAleatorio;
@@ -58,7 +68,12 @@ public class RSA extends Encriptador{
     }
     
     
-    
+    /**
+     * Verifica si un número dado es primo o no.
+     * 
+     * @param numero El número a verificar.
+     * @return Verdadero si el número es primo, falso en caso contrario.
+     */
     public  boolean esPrimo(int numero) {
         if (numero <= 1) {
             return false;
@@ -73,6 +88,12 @@ public class RSA extends Encriptador{
         return true;
     }
 
+    /**
+    * Encuentra la factorización en números primos de un número dado.
+    * 
+    * @param p El número a factorizar.
+    * @return Un arreglo con los dos números primos que multiplicados dan como resultado el número p.
+    */
     public  int[] encontrarFactorizacionPrimos(int p) {
         for (int a = 2; a <= p / 2; a++) {
             if (esPrimo(a)) {
@@ -88,7 +109,13 @@ public class RSA extends Encriptador{
     }
     
     
-    
+    /**
+     * Genera el valor de la función phi de Euler para dos números primos.
+     * 
+     * @param p Primer número primo.
+     * @param q Segundo número primo.
+     * @return El valor de phi de Euler para los números dados.
+     */
     public int generarEuler(int p, int q)
     {
         
@@ -97,7 +124,13 @@ public class RSA extends Encriptador{
         return resultado;
     }
     
-    
+    /**
+     * Genera el valor de la función phi de Euler para dos números primos.
+     * 
+     * @param n multiplicacion de dos numeros primos
+     * 
+     * @return El valor de phi de Euler para los números dados.
+     */
     public int generarEuler(int n)
     {
         int[] numeros = encontrarFactorizacionPrimos(n);
@@ -108,6 +141,13 @@ public class RSA extends Encriptador{
         return resultado;
     }
     
+      /**
+    * Encuentra el MCD de dos numeros
+    * 
+    * @param a El número a .
+    * @param a El número b .
+    * @return El MCD de los dos numeros brindados.
+    */
       public int sonCoprimos(int a, int b) {
         // Utilizamos el algoritmo de Euclides para verificar si dos números son coprimos
         while (b != 0) {
@@ -119,6 +159,12 @@ public class RSA extends Encriptador{
         return a;
     }
 
+    /**
+     * Encuentra un número coprimo menor para un número dado.
+     * 
+     * @param x El número para el cual se busca el coprimo.
+     * @return El número coprimo menor encontrado.
+     */
     public  int encontrarCoprimoMenor(int x) {
         int coprimo = 2; // Empezamos con el número inmediatamente menor a x
 
@@ -130,7 +176,13 @@ public class RSA extends Encriptador{
         return coprimo;
     }
     
-    
+    /**
+    * Encuentra el valor de la clave privada (d) para un valor de la clave pública (e) y un valor phi de Euler dado.
+    * 
+    * @param e Valor de la clave pública.
+    * @param phiN Valor phi de Euler.
+    * @return El valor de la clave privada (d).
+    */
     public  int encontrarD(int e, int phiN) 
     {
         
@@ -163,7 +215,11 @@ public class RSA extends Encriptador{
         
     }
     
-    
+    /**
+     * Codifica un mensaje usando el algoritmo RSA.
+     * 
+     * @return El mensaje cifrado.
+     */
     public String codificador()
     {
         StringBuilder textoCodificado = new StringBuilder();
@@ -191,7 +247,11 @@ public class RSA extends Encriptador{
         return StringUtils.chop(str);
     }
     
-    
+    /**
+     * Decodifica un mensaje cifrado usando el algoritmo RSA.
+     * 
+     * @return El mensaje descifrado.
+     */
     public String decodificador()
     {
         String miEntrada = entrada +"*";
@@ -227,7 +287,12 @@ public class RSA extends Encriptador{
         return textoCodificado.toString().trim();
     }
     
-    
+    /**
+    * Valida la entrada para asegurarse de que sea un dígito numérico y que no esté vacía.
+    * 
+    * @param pEntrada La entrada a validar.
+    * @throws IllegalArgumentException Si la entrada no es un dígito numérico o está vacía.
+    */
     public void validarEntrada(String pEntrada)
     {
         try
@@ -244,27 +309,49 @@ public class RSA extends Encriptador{
         }
     }
     
+    /**
+     * Define el valor de N, que se utiliza en el algoritmo RSA.
+     * 
+     * @param p Primer número primo.
+     * @param q Segundo número primo.
+     */
     public void definirN(int p, int q)
     {
         this.n = p*q;
     }
     
-    
+    /**
+    * Obtiene el valor de N utilizado en el algoritmo RSA.
+    * 
+    * @return El valor de N.
+    */
     public int getN()
     {
         return n;
     }
-    
+    /**
+    * Obtiene el valor de E utilizado en el algoritmo RSA.
+    * 
+    * @return El valor de E.
+    */
     public int getE()
     {
         return e;
     }
-    
+    /**
+    * Obtiene el valor de D utilizado en el algoritmo RSA.
+    * 
+    * @return El valor de D.
+    */
     public int getD()
     {
         return d;
     }
-    
+    /**
+    * Devuelve una representación en formato de texto de las claves generadas.
+    * 
+    * @return Una cadena que representa las claves generadas.
+    */
     public String toString()
     {
         String msg = "";
